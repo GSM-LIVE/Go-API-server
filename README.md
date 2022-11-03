@@ -8,7 +8,7 @@ $ git clone <URL>
 
 $ git branch -m feature/{name}
 
-$ git checkout -b feature/{name}
+$ git checkout feature/{name}
 ```
 
 <br>
