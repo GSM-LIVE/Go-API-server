@@ -39,7 +39,7 @@ public class StudentInfoController {
         return studentInfoService.getStudentInfoByNumber(number);
     }
 
-    @PostMapping("info")
+    @PostMapping("/info")
     public ArrayList<ResponseStudent> getStudentInfoByMajor(String major) {
         return studentInfoService.getStudentsInfoByMajor(major);
     }

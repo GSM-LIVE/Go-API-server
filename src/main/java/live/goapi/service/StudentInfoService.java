@@ -8,6 +8,7 @@ import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 
 import java.util.ArrayList;
+import java.util.Optional;
 
 @Service
 @RequiredArgsConstructor
@@ -16,12 +17,12 @@ public class StudentInfoService {
     private final StudentUtil studentUtil;
 
     public ResponseStudent getStudentInfoByName(String name) {
-        Student findStudent = studentRepository.findByName(name);
+        Optional<Student> findStudent = studentRepository.findByName(name);
         return studentUtil.makeResponseStudent(findStudent);
     }
 
     public ResponseStudent getStudentInfoByNumber(String number) {
-        Student findStudent = studentRepository.findByNumber(number);
+        Optional<Student> findStudent = studentRepository.findByNumber(number);
         return studentUtil.makeResponseStudent(findStudent);
     }
 
@@ -29,11 +30,10 @@ public class StudentInfoService {
         ArrayList<ResponseStudent> findStudents = studentRepository.findByMajor(major);
 
         if(findStudents.isEmpty()){
-            throw new NullPointerException("존재하지 않는 학생입니다.");
+            throw new NullPointerException("해당하는 학생의 정보가 존재하지 않습니다.");
         }
+
         return findStudents;
     }
-
-
 }
 

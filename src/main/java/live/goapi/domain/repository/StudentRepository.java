@@ -6,10 +6,11 @@ import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
 
 import java.util.ArrayList;
+import java.util.Optional;
 
 @Repository
 public interface StudentRepository extends JpaRepository<Integer , Student> {
-    Student findByName(String name);
-    Student findByNumber(String number);
+    Optional<Student> findByName(String name);
+    Optional<Student> findByNumber(String number);
     ArrayList<ResponseStudent> findByMajor(String major);
 }
