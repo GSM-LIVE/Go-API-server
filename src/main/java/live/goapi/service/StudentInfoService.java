@@ -2,6 +2,7 @@ package live.goapi.service;
 
 import live.goapi.domain.Student;
 import live.goapi.domain.repository.StudentRepository;
+import live.goapi.dto.request.RequestStudent;
 import live.goapi.dto.response.ResponseStudent;
 import live.goapi.util.StudentUtil;
 import lombok.RequiredArgsConstructor;
@@ -15,6 +16,12 @@ import java.util.Optional;
 public class StudentInfoService {
     private final StudentRepository studentRepository;
     private final StudentUtil studentUtil;
+
+    public Integer saveStudentInfo(RequestStudent request) {
+        Student student = request.toEntity();
+        studentRepository.save(student);
+        return student.getStudent_id();
+    }
 
     public ResponseStudent getStudentInfoByName(String name) {
         Optional<Student> findStudent = studentRepository.findByName(name);

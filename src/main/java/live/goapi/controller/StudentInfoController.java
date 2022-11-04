@@ -29,17 +29,17 @@ public class StudentInfoController {
      * "major" : "Back-End"
      * }
      */
-    @PostMapping("/info")
+    @PostMapping("/info/name")
     public ResponseStudent getStudentInfoByName(String name) {
         return studentInfoService.getStudentInfoByName(name);
     }
 
-    @PostMapping("/info")
+    @PostMapping("/info/number")
     public ResponseStudent getStudentInfoByNumber(String number) {
         return studentInfoService.getStudentInfoByNumber(number);
     }
 
-    @PostMapping("/info")
+    @PostMapping("/info/major")
     public ArrayList<ResponseStudent> getStudentInfoByMajor(String major) {
         return studentInfoService.getStudentsInfoByMajor(major);
     }

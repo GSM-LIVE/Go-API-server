@@ -27,8 +27,9 @@ public class Student {
     @Column(name = "major" , nullable = true, unique = true)
     private String major;
 
-    public Student(String name, String number) {
+    public Student(String name, String number, String major) {
         this.name = name;
         this.number = number;
+        this.major = major;
     }
 }
