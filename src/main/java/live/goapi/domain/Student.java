@@ -24,6 +24,9 @@ public class Student {
     @Column(name = "number" , nullable = true, unique = true)
     private String number;
 
+    @Column(name = "major" , nullable = true, unique = true)
+    private String major;
+
     public Student(String name, String number) {
         this.name = name;
         this.number = number;
