@@ -15,18 +15,18 @@ public class StudentInfoService {
     private final StudentRepository studentRepository;
     private final StudentUtil studentUtil;
 
-    ResponseStudent getStudentInfoByName(String name) {
+    public ResponseStudent getStudentInfoByName(String name) {
         Student findStudent = studentRepository.findByName(name);
         return studentUtil.makeResponseStudent(findStudent);
     }
 
-    ResponseStudent getStudentInfoByNumber(String number) {
+    public ResponseStudent getStudentInfoByNumber(String number) {
         Student findStudent = studentRepository.findByNumber(number);
         return studentUtil.makeResponseStudent(findStudent);
     }
 
-    ArrayList<Student> getStudentsInfoByMajor(String major) {
-        ArrayList<Student> findStudents = studentRepository.findByMajor(major);
+    public ArrayList<ResponseStudent> getStudentsInfoByMajor(String major) {
+        ArrayList<ResponseStudent> findStudents = studentRepository.findByMajor(major);
 
         if(findStudents.isEmpty()){
             throw new NullPointerException("존재하지 않는 학생입니다.");
