@@ -13,7 +13,10 @@ public class StudentUtil {
             throw new NullPointerException("존재하지 않는 학생입니다.");
         }
         ResponseStudent response = new ResponseStudent(
-                findStudent.get().getName(), findStudent.get().getNumber(), findStudent.get().getMajor());
+                findStudent.get().getName(),
+                findStudent.get().getNumber(),
+                findStudent.get().getMajor());
+
         return response;
     }
 }
