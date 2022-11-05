@@ -1,6 +1,5 @@
 package live.goapi.controller;
 
-import live.goapi.domain.Student;
 import live.goapi.dto.response.ResponseStudent;
 import live.goapi.service.StudentInfoService;
 import lombok.RequiredArgsConstructor;
