@@ -10,7 +10,7 @@ import lombok.Setter;
 @AllArgsConstructor
 @NoArgsConstructor
 public class ResponseStudent {
-    String name;
-    String number;
-    String major;
+    private String name;
+    private String number;
+    private String major;
 }

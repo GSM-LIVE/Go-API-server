@@ -5,9 +5,7 @@ import live.goapi.dto.response.ResponseStudent;
 import live.goapi.service.StudentInfoService;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.ArrayList;
 
@@ -29,18 +27,18 @@ public class StudentInfoController {
      * "major" : "Back-End"
      * }
      */
-    @PostMapping("/info")
-    public ResponseStudent getStudentInfoByName(String name) {
+    @GetMapping("/info/{name}")
+    public ResponseStudent getStudentInfoByName(@PathVariable String name) {
         return studentInfoService.getStudentInfoByName(name);
     }
 
-    @PostMapping("/info")
-    public ResponseStudent getStudentInfoByNumber(String number) {
+    @GetMapping("/info/{number}")
+    public ResponseStudent getStudentInfoByNumber(@PathVariable String number) {
         return studentInfoService.getStudentInfoByNumber(number);
     }
 
-    @PostMapping("info")
-    public ArrayList<ResponseStudent> getStudentInfoByMajor(String major) {
+    @GetMapping("/info/{major}")
+    public ArrayList<ResponseStudent> getStudentInfoByMajor(@PathVariable String major) {
         return studentInfoService.getStudentsInfoByMajor(major);
     }
 }
