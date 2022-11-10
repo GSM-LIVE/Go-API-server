@@ -26,4 +26,8 @@ public class Teacher {
     @Column(name = "subject" , nullable = false, unique = true)
     private String subject;
 
+    public Teacher(String teacherName, String subject) {
+        this.teacherName = teacherName;
+        this.subject = subject;
+    }
 }
