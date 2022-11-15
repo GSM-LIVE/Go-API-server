@@ -22,9 +22,9 @@ public class TeacherInfoController {
         return teacherInfoService.getTeacherInfoByName(teacherName);
     }
 
-    @GetMapping("/info/{subject}")
+    @GetMapping("/{subject}")
     public ResponseTeacher getTeacherInfoBySubject(@PathVariable String subject) {
-        return teacherInfoService.getTeacherInfBySubject(subject);
+        return teacherInfoService.getTeacherInfoBySubject(subject);
     }
 }
 

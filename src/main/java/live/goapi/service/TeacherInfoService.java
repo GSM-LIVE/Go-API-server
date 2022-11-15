@@ -4,11 +4,10 @@ import live.goapi.domain.Teacher;
 import live.goapi.domain.repository.TeacherRepository;
 import live.goapi.dto.request.RequestTeacher;
 import live.goapi.dto.response.ResponseTeacher;
+import live.goapi.exception.exceptions.NotFoundTeacherException;
 import live.goapi.util.TeacherUtil;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
-
-import java.util.Optional;
 
 @Service
 @RequiredArgsConstructor
@@ -23,12 +22,12 @@ public class TeacherInfoService {
     }
 
     public ResponseTeacher getTeacherInfoByName (String teacherName) {
-        Optional<Teacher> findTeacher = teacherRepository.findByTeacherName(teacherName);
+        Teacher findTeacher = teacherRepository.findByTeacherName(teacherName).orElseThrow(() ->new NotFoundTeacherException("존재하지 않는 선생님입니다"));
         return teacherUtil.makeResponseTeacher(findTeacher);
     }
 
-    public  ResponseTeacher getTeacherInfBySubject (String subject) {
-        Optional<Teacher> findTeacher = teacherRepository.findBySubject(subject);
+    public  ResponseTeacher getTeacherInfoBySubject(String subject) {
+        Teacher findTeacher = teacherRepository.findBySubject(subject).orElseThrow(()-> new NotFoundTeacherException("존재하지 않는 선생님입니다"));
         return teacherUtil.makeResponseTeacher(findTeacher);
     }
 

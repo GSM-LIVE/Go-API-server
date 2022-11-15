@@ -8,14 +8,11 @@ import java.util.Optional;
 
 @Component
 public class TeacherUtil {
-    public ResponseTeacher makeResponseTeacher(Optional<Teacher> findTeacher){
-        if(findTeacher == null) {
-            throw new NullPointerException("존재하지 않는 선생님입니다");
-        }
-        ResponseTeacher responseTeacher = new ResponseTeacher(
-                findTeacher.get().getTeacherName(),
-                findTeacher.get().getSubject());
+    public ResponseTeacher makeResponseTeacher(Teacher findTeacher){
 
+        ResponseTeacher responseTeacher = new ResponseTeacher(
+                findTeacher.getTeacherName(),
+                findTeacher.getSubject());
         return responseTeacher;
     }
 }
