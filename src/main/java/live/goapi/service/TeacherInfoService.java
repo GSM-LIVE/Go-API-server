@@ -9,6 +9,9 @@ import live.goapi.util.TeacherUtil;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 
+import java.util.ArrayList;
+import java.util.List;
+
 @Service
 @RequiredArgsConstructor
 public class TeacherInfoService {
@@ -22,13 +25,23 @@ public class TeacherInfoService {
     }
 
     public ResponseTeacher getTeacherInfoByName (String teacherName) {
-        Teacher findTeacher = teacherRepository.findByTeacherName(teacherName).orElseThrow(() ->new NotFoundTeacherException("존재하지 않는 선생님입니다"));
+        Teacher findTeacher = teacherRepository.findByTeacherName(teacherName).orElseThrow(
+                () -> new NotFoundTeacherException("존재하지 않는 선생님입니다"));
         return teacherUtil.makeResponseTeacher(findTeacher);
     }
 
-    public  ResponseTeacher getTeacherInfoBySubject(String subject) {
-        Teacher findTeacher = teacherRepository.findBySubject(subject).orElseThrow(()-> new NotFoundTeacherException("존재하지 않는 선생님입니다"));
-        return teacherUtil.makeResponseTeacher(findTeacher);
+    public List<ResponseTeacher> getTeacherInfoBySubject(String subject) {
+        List<Teacher> teachers = teacherRepository.findBySubject(subject);
+        List<ResponseTeacher> responseList = new ArrayList<>();
+        if(teachers.isEmpty()){
+            throw new NotFoundTeacherException("존재하지 않는 선생님입니다.");
+        }
+
+        for (Teacher teacher : teachers) {
+            responseList.add(new ResponseTeacher(teacher.getTeacherName(), teacher.getSubject()));
+        }
+
+        return responseList;
     }
 
 }
