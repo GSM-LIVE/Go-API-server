@@ -7,6 +7,7 @@ import lombok.extern.slf4j.Slf4j;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.ArrayList;
+import java.util.List;
 
 @RestController
 @Slf4j
@@ -28,16 +29,16 @@ public class StudentInfoController {
      */
     @GetMapping("/info/{name}")
     public ResponseStudent getStudentInfoByName(@PathVariable String name) {
-        return studentInfoService.getStudentInfoByName(name);
+        return studentInfoService.getStudentInfoByStudentName(name);
     }
 
     @GetMapping("/info/{number}")
     public ResponseStudent getStudentInfoByNumber(@PathVariable String number) {
-        return studentInfoService.getStudentInfoByNumber(number);
+        return studentInfoService.getStudentInfoByStudentNumber(number);
     }
 
     @GetMapping("/info/{major}")
-    public ArrayList<ResponseStudent> getStudentInfoByMajor(@PathVariable String major) {
+    public List<ResponseStudent> getStudentInfoByMajor(@PathVariable String major) {
         return studentInfoService.getStudentsInfoByMajor(major);
     }
 }

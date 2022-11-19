@@ -2,13 +2,13 @@ package live.goapi.exception.exceptions;
 
 import live.goapi.exception.ErrorCode;
 import lombok.Getter;
-import lombok.RequiredArgsConstructor;
 
 @Getter
-public class NotFoundTeacherException extends BasicException{
+public class NotFoundStudentException extends BasicException {
+
     private final ErrorCode errorCode;
 
-    public NotFoundTeacherException(String message) {
+    public NotFoundStudentException(String message) {
         super(message);
         errorCode = ErrorCode.TEACHER_NOT_FOUND;
     }
