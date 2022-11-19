@@ -15,6 +15,7 @@ import javax.persistence.*;
 @AllArgsConstructor
 @NoArgsConstructor
 public class Teacher {
+
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     @Column(name = "teacher_id", nullable = false)
@@ -26,8 +27,4 @@ public class Teacher {
     @Column(name = "subject" , nullable = false, unique = true)
     private String subject;
 
-    public Teacher(String teacherName, String subject) {
-        this.teacherName = teacherName;
-        this.subject = subject;
-    }
 }

@@ -1,7 +1,7 @@
 package live.goapi.exception.handler;
 
 import live.goapi.exception.ErrorResponse;
-import live.goapi.exception.exceptions.NotFoundTeacherException;
+import live.goapi.exception.collection.NotFoundTeacherException;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;

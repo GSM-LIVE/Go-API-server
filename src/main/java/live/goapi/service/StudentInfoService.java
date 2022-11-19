@@ -1,14 +1,11 @@
 package live.goapi.service;
 
 import live.goapi.domain.Student;
-import live.goapi.domain.Teacher;
 import live.goapi.domain.repository.StudentRepository;
 import live.goapi.dto.request.RequestStudent;
-import live.goapi.dto.request.RequestTeacher;
 import live.goapi.dto.response.ResponseStudent;
-import live.goapi.dto.response.ResponseTeacher;
-import live.goapi.exception.exceptions.NotFoundStudentException;
-import live.goapi.exception.exceptions.NotFoundTeacherException;
+import live.goapi.exception.collection.NotFoundStudentException;
+import live.goapi.exception.collection.NotFoundTeacherException;
 import live.goapi.util.StudentUtil;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;

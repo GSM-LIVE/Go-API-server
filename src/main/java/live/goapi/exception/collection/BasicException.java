@@ -1,4 +1,4 @@
-package live.goapi.exception.exceptions;
+package live.goapi.exception.collection;
 
 
 public class BasicException extends RuntimeException{

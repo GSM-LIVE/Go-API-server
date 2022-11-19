@@ -4,7 +4,7 @@ import live.goapi.domain.Teacher;
 import live.goapi.domain.repository.TeacherRepository;
 import live.goapi.dto.request.RequestTeacher;
 import live.goapi.dto.response.ResponseTeacher;
-import live.goapi.exception.exceptions.NotFoundTeacherException;
+import live.goapi.exception.collection.NotFoundTeacherException;
 import live.goapi.util.TeacherUtil;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;

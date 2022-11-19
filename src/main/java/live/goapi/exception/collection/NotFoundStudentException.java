@@ -1,4 +1,4 @@
-package live.goapi.exception.exceptions;
+package live.goapi.exception.collection;
 
 import live.goapi.exception.ErrorCode;
 import lombok.Getter;
