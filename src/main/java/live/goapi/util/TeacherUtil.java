@@ -4,7 +4,6 @@ import live.goapi.domain.Teacher;
 import live.goapi.dto.response.ResponseTeacher;
 import org.springframework.stereotype.Component;
 
-import java.util.Optional;
 
 @Component
 public class TeacherUtil {
