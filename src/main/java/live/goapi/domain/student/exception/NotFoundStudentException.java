@@ -1,6 +1,7 @@
-package live.goapi.global.exception.collection;
+package live.goapi.domain.student.exception;
 
 import live.goapi.global.exception.ErrorCode;
+import live.goapi.global.exception.collection.BasicException;
 import lombok.Getter;
 
 @Getter

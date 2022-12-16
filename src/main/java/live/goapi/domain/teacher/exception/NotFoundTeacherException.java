@@ -1,10 +1,11 @@
-package live.goapi.global.exception.collection;
+package live.goapi.domain.teacher.exception;
 
 import live.goapi.global.exception.ErrorCode;
+import live.goapi.global.exception.collection.BasicException;
 import lombok.Getter;
 
 @Getter
-public class NotFoundTeacherException extends BasicException{
+public class NotFoundTeacherException extends BasicException {
     private final ErrorCode errorCode;
 
     public NotFoundTeacherException(String message) {
