@@ -2,7 +2,7 @@ package live.goapi.global.exception.handler;
 
 import live.goapi.domain.gsmapi.student.exception.NotFoundStudentException;
 import live.goapi.domain.member.exception.MemberNotFoundException;
-import live.goapi.domain.member.exception.PasswordMismatchException;
+import live.goapi.domain.auth.exception.PasswordMismatchException;
 import live.goapi.global.exception.ErrorResponse;
 import live.goapi.domain.gsmapi.teacher.exception.NotFoundTeacherException;
 import live.goapi.global.security.exception.TokenExpirationException;

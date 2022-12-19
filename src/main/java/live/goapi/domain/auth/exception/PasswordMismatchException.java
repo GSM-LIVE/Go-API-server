@@ -1,4 +1,4 @@
-package live.goapi.domain.member.exception;
+package live.goapi.domain.auth.exception;
 
 import live.goapi.global.exception.ErrorCode;
 import lombok.Getter;
