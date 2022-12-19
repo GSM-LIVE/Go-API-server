@@ -2,7 +2,7 @@ package live.goapi.domain.member.facade;
 
 import live.goapi.domain.member.entity.Member;
 import live.goapi.domain.member.exception.MemberNotFoundException;
-import live.goapi.domain.member.exception.PasswordMismatchException;
+import live.goapi.domain.auth.exception.PasswordMismatchException;
 import live.goapi.domain.member.repository.MemberRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.security.core.context.SecurityContextHolder;

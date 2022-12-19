@@ -1,6 +1,6 @@
 package live.goapi.global.security.authentication;
 
-import live.goapi.domain.member.entity.Member;
+import live.goapi.domain.member.exception.MemberNotFoundException;
 import live.goapi.domain.member.repository.MemberRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.security.core.userdetails.UserDetails;
@@ -19,6 +19,6 @@ public class MemberDetailsService implements UserDetailsService {
     @Transactional(rollbackFor = Exception.class)
     public UserDetails loadUserByUsername(String email) throws UsernameNotFoundException {
         return new MemberDetails(memberRepository.findByEmail(email)
-                .orElseThrow(() -> new UsernameNotFoundException("존재하지 않는 회원입니다.")));
+                .orElseThrow(() -> new MemberNotFoundException("존재하지 않는 회원입니다.")));
     }
 }
