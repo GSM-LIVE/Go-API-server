@@ -38,6 +38,7 @@ public class SecurityConfig {
                 .csrf().disable();
         http
                 .authorizeRequests()
+                .antMatchers("/auth/**").permitAll()
                 .anyRequest().authenticated();
         http
                 .sessionManagement()
