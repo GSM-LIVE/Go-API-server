@@ -10,6 +10,7 @@ import live.goapi.global.security.jwt.JwtTokenProvider;
 import live.goapi.global.security.jwt.properties.JwtProperties;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 @Service
 @RequiredArgsConstructor
@@ -20,6 +21,7 @@ public class MemberLoginService {
     private final JwtTokenProvider jwtTokenProvider;
     private final JwtProperties jwtProperties;
 
+    @Transactional
     public TokenResponse login(MemberLoginRequest request) {
         Member member = memberRepository.findByEmail(request.getEmail())
                 .orElseThrow(() -> new MemberNotFoundException("존재하지 않는 회원입니다."));

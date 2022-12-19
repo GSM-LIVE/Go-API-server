@@ -16,7 +16,7 @@ public class MemberSignUpService {
     private final PasswordEncoder passwordEncoder;
     private final MemberRepository memberRepository;
 
-    @Transactional
+    @Transactional(rollbackFor = Exception.class)
     public void signUp(MemberSignUpRequest signUpMember) {
         if(memberRepository.existsByEmail(signUpMember.getEmail()))
             throw new ExistsEmailException("이미 존재하는 이메일입니다.");
