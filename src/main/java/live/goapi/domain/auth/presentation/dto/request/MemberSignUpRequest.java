@@ -9,7 +9,7 @@ import javax.validation.constraints.NotBlank;
 @Getter
 @NoArgsConstructor
 @AllArgsConstructor
-public class RequestSignUp {
+public class MemberSignUpRequest {
 
     @NotBlank
     private String email;
@@ -22,4 +22,7 @@ public class RequestSignUp {
 
     @NotBlank
     private String studentNumber;
+
+    @NotBlank
+    private String major;
 }
