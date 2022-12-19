@@ -1,49 +1,19 @@
 package live.goapi.global.security.authentication;
 
 import live.goapi.domain.member.entity.Member;
-import lombok.RequiredArgsConstructor;
-import org.springframework.security.core.GrantedAuthority;
-import org.springframework.security.core.userdetails.UserDetails;
+import lombok.Getter;
+import org.springframework.security.core.authority.SimpleGrantedAuthority;
+import org.springframework.security.core.userdetails.User;
 
-import java.util.Collection;
+import java.util.List;
 
-@RequiredArgsConstructor
-public class MemberDetails implements UserDetails {
+@Getter
+public class MemberDetails extends User {
 
     private final Member member;
 
-    @Override
-    public Collection<? extends GrantedAuthority> getAuthorities() {
-        return null;
-    }
-
-    @Override
-    public String getPassword() {
-        return member.getPassword();
-    }
-
-    @Override
-    public String getUsername() {
-        return member.getEmail();
-    }
-
-    @Override
-    public boolean isAccountNonExpired() {
-        return false;
-    }
-
-    @Override
-    public boolean isAccountNonLocked() {
-        return false;
-    }
-
-    @Override
-    public boolean isCredentialsNonExpired() {
-        return false;
-    }
-
-    @Override
-    public boolean isEnabled() {
-        return false;
+    public MemberDetails(Member member) {
+        super(member.getEmail(), member.getPassword(), List.of(new SimpleGrantedAuthority(String.valueOf(member.getRole()))));
+        this.member = member;
     }
 }

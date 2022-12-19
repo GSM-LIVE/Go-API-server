@@ -4,6 +4,7 @@ import live.goapi.domain.auth.exception.ExistsEmailException;
 import live.goapi.domain.auth.presentation.dto.request.MemberSignUpRequest;
 import live.goapi.domain.member.entity.Member;
 import live.goapi.domain.member.repository.MemberRepository;
+import live.goapi.global.role.Role;
 import lombok.RequiredArgsConstructor;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
@@ -28,6 +29,7 @@ public class MemberSignUpService {
                 .name(signUpMember.getName())
                 .studentNumber(signUpMember.getStudentNumber())
                 .major(signUpMember.getMajor())
+                .role(Role.from(signUpMember.getRole()))
                 .build();
 
         memberRepository.save(member);

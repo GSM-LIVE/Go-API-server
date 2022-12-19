@@ -8,12 +8,14 @@ import live.goapi.global.security.exception.TokenNotValidException;
 import live.goapi.global.security.jwt.JwtTokenProvider;
 import live.goapi.global.security.jwt.properties.JwtProperties;
 import lombok.RequiredArgsConstructor;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import java.time.ZonedDateTime;
 
 @Service
+@Slf4j
 @RequiredArgsConstructor
 public class TokenReissueService {
 
@@ -23,7 +25,7 @@ public class TokenReissueService {
 
     @Transactional(rollbackFor = Exception.class)
     public NewTokenResponse tokenReissue(String requestToken) {
-        String email = jwtTokenProvider.getUserEmail(requestToken, jwtProperties.getAccessSecret());
+        String email = jwtTokenProvider.getUserEmail(requestToken, jwtProperties.getRefreshSecret());
         RefreshToken token = refreshTokenRepository.findById(email)
                 .orElseThrow(() -> new RefreshTokenNotFoundException("리프레시 토큰을 찾을 수 없습니다."));
 

@@ -27,4 +27,7 @@ public class MemberSignUpRequest {
 
     @NotBlank(message = "전공은 공백이나 null 값을 허용하지 않습니다.")
     private String major;
+
+    @NotBlank(message = "역할은 공백이거나 null 값을 허용하지 않습니다.")
+    private String role;
 }
