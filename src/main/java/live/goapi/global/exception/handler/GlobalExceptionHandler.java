@@ -1,6 +1,8 @@
 package live.goapi.global.exception.handler;
 
 import live.goapi.domain.gsmapi.student.exception.NotFoundStudentException;
+import live.goapi.domain.member.exception.MemberNotFoundException;
+import live.goapi.domain.member.exception.PasswordMismatchException;
 import live.goapi.global.exception.ErrorResponse;
 import live.goapi.domain.gsmapi.teacher.exception.NotFoundTeacherException;
 import live.goapi.global.security.exception.TokenExpirationException;
@@ -44,6 +46,21 @@ public class GlobalExceptionHandler {
         ErrorResponse errorResponse = new ErrorResponse(e.getErrorCode().getMessage(), e.getErrorCode().getStatus());
         return new ResponseEntity<>(errorResponse, HttpStatus.valueOf(e.getErrorCode().getStatus()));
     }
+
+    @ExceptionHandler(MemberNotFoundException.class)
+    public ResponseEntity<ErrorResponse> handleMemberNotFoundException(HttpServletRequest request , MemberNotFoundException e) {
+        printError(request, e, e.getErrorCode().getMessage());
+        ErrorResponse errorResponse = new ErrorResponse(e.getErrorCode().getMessage(), e.getErrorCode().getStatus());
+        return new ResponseEntity<>(errorResponse, HttpStatus.valueOf(e.getErrorCode().getStatus()));
+    }
+
+    @ExceptionHandler(PasswordMismatchException.class)
+    public ResponseEntity<ErrorResponse> handlePasswordMismatchException(HttpServletRequest request , PasswordMismatchException e) {
+        printError(request, e, e.getErrorCode().getMessage());
+        ErrorResponse errorResponse = new ErrorResponse(e.getErrorCode().getMessage(), e.getErrorCode().getStatus());
+        return new ResponseEntity<>(errorResponse, HttpStatus.valueOf(e.getErrorCode().getStatus()));
+    }
+
 
     private void printError(HttpServletRequest request, RuntimeException ex, String message) {
         log.error(request.getRequestURI());

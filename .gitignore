@@ -16,7 +16,7 @@ build/
 bin/
 !**/src/main/**/bin/
 !**/src/test/**/bin/
-
+application.properties
 ### IntelliJ IDEA ###
 .idea
 *.iws
@@ -25,7 +25,7 @@ bin/
 out/
 !**/src/main/**/out/
 !**/src/test/**/out/
-application.yml
+application.properties
 ### NetBeans ###
 /nbproject/private/
 /nbbuild/
