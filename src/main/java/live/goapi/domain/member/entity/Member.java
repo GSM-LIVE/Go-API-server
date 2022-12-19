@@ -31,4 +31,7 @@ public class Member  {
     @Column(name = "student_number")
     private String studentNumber;
 
+    @Column(name = "major")
+    private String major;
+
 }
