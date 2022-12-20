@@ -10,6 +10,6 @@ public class ClubNotFoundException extends RuntimeException{
 
     public ClubNotFoundException(String message) {
         super(message);
-        this.errorCode = ErrorCode.
+        this.errorCode = ErrorCode.CLUB_NOT_FOUND;
     }
 }
