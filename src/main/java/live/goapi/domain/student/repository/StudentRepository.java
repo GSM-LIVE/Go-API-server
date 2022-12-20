@@ -1,5 +1,6 @@
 package live.goapi.domain.student.repository;
 
+import live.goapi.domain.club.entity.Club;
 import live.goapi.domain.student.entity.Student;
 import org.springframework.data.jpa.repository.JpaRepository;
 
@@ -10,4 +11,5 @@ public interface StudentRepository extends JpaRepository<Student, Integer> {
     Optional<Student> findByStudentName(String studentName);
     Optional<Student> findByStudentNumber(String studentNumber);
     List<Student> findByStudentMajor(String studentMajor);
+    List<Student> findByClub(Club club);
 }
