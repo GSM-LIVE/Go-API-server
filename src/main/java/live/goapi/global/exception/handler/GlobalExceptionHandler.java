@@ -1,5 +1,11 @@
 package live.goapi.global.exception.handler;
 
+import live.goapi.domain.auth.exception.ExistsEmailException;
+import live.goapi.domain.auth.exception.RefreshTokenNotFoundException;
+import live.goapi.domain.club.exception.ClubNotFoundException;
+import live.goapi.domain.email.exception.AuthCodeExpiredException;
+import live.goapi.domain.email.exception.ManyRequestEmailAuthException;
+import live.goapi.domain.email.exception.MisMatchAuthCodeException;
 import live.goapi.domain.student.exception.NotFoundStudentException;
 import live.goapi.domain.member.exception.MemberNotFoundException;
 import live.goapi.domain.auth.exception.PasswordMismatchException;
@@ -56,6 +62,48 @@ public class GlobalExceptionHandler {
 
     @ExceptionHandler(PasswordMismatchException.class)
     public ResponseEntity<ErrorResponse> handlePasswordMismatchException(HttpServletRequest request , PasswordMismatchException e) {
+        printError(request, e, e.getErrorCode().getMessage());
+        ErrorResponse errorResponse = new ErrorResponse(e.getErrorCode().getMessage(), e.getErrorCode().getStatus());
+        return new ResponseEntity<>(errorResponse, HttpStatus.valueOf(e.getErrorCode().getStatus()));
+    }
+
+    @ExceptionHandler(AuthCodeExpiredException.class)
+    public ResponseEntity<ErrorResponse> handleAuthCodeExpiredException(HttpServletRequest request , AuthCodeExpiredException e) {
+        printError(request, e, e.getErrorCode().getMessage());
+        ErrorResponse errorResponse = new ErrorResponse(e.getErrorCode().getMessage(), e.getErrorCode().getStatus());
+        return new ResponseEntity<>(errorResponse, HttpStatus.valueOf(e.getErrorCode().getStatus()));
+    }
+
+    @ExceptionHandler(ManyRequestEmailAuthException.class)
+    public ResponseEntity<ErrorResponse> handleManyRequestEmailAuthException(HttpServletRequest request , ManyRequestEmailAuthException e) {
+        printError(request, e, e.getErrorCode().getMessage());
+        ErrorResponse errorResponse = new ErrorResponse(e.getErrorCode().getMessage(), e.getErrorCode().getStatus());
+        return new ResponseEntity<>(errorResponse, HttpStatus.valueOf(e.getErrorCode().getStatus()));
+    }
+
+    @ExceptionHandler(MisMatchAuthCodeException.class)
+    public ResponseEntity<ErrorResponse> handleMisMatchAuthCodeException(HttpServletRequest request , MisMatchAuthCodeException e) {
+        printError(request, e, e.getErrorCode().getMessage());
+        ErrorResponse errorResponse = new ErrorResponse(e.getErrorCode().getMessage(), e.getErrorCode().getStatus());
+        return new ResponseEntity<>(errorResponse, HttpStatus.valueOf(e.getErrorCode().getStatus()));
+    }
+
+    @ExceptionHandler(ClubNotFoundException.class)
+    public ResponseEntity<ErrorResponse> handleClubNotFoundException(HttpServletRequest request , ClubNotFoundException e) {
+        printError(request, e, e.getErrorCode().getMessage());
+        ErrorResponse errorResponse = new ErrorResponse(e.getErrorCode().getMessage(), e.getErrorCode().getStatus());
+        return new ResponseEntity<>(errorResponse, HttpStatus.valueOf(e.getErrorCode().getStatus()));
+    }
+
+    @ExceptionHandler(RefreshTokenNotFoundException.class)
+    public ResponseEntity<ErrorResponse> handleRefreshTokenNotFoundException(HttpServletRequest request , RefreshTokenNotFoundException e) {
+        printError(request, e, e.getErrorCode().getMessage());
+        ErrorResponse errorResponse = new ErrorResponse(e.getErrorCode().getMessage(), e.getErrorCode().getStatus());
+        return new ResponseEntity<>(errorResponse, HttpStatus.valueOf(e.getErrorCode().getStatus()));
+    }
+
+    @ExceptionHandler(ExistsEmailException.class)
+    public ResponseEntity<ErrorResponse> handleExistsEmailExceptio(HttpServletRequest request , ExistsEmailException e) {
         printError(request, e, e.getErrorCode().getMessage());
         ErrorResponse errorResponse = new ErrorResponse(e.getErrorCode().getMessage(), e.getErrorCode().getStatus());
         return new ResponseEntity<>(errorResponse, HttpStatus.valueOf(e.getErrorCode().getStatus()));
