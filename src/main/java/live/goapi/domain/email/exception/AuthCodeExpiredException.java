@@ -9,6 +9,6 @@ public class AuthCodeExpiredException extends RuntimeException{
 
     public AuthCodeExpiredException(String message) {
         super(message);
-        this.errorCode = ErrorCode.EXPIRE_EMAIL_CODE
+        this.errorCode = ErrorCode.EXPIRE_EMAIL_CODE;
     }
 }
