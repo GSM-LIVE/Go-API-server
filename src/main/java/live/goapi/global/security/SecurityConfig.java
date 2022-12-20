@@ -6,6 +6,7 @@ import live.goapi.global.security.handler.CustomAuthenticationEntryPointHandler;
 import lombok.RequiredArgsConstructor;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
+import org.springframework.http.HttpMethod;
 import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.config.annotation.authentication.configuration.AuthenticationConfiguration;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
@@ -40,6 +41,22 @@ public class SecurityConfig {
                 .authorizeRequests()
                 .antMatchers("/auth/**").permitAll()
                 .antMatchers("/email/**").permitAll()
+
+                .antMatchers(HttpMethod.POST, "/club/**").hasAuthority("MEMBER")
+                .antMatchers(HttpMethod.GET, "/club/**").hasAuthority("MEMBER")
+
+                .antMatchers("/club/**").hasAuthority("ADMIN")
+
+                .antMatchers(HttpMethod.POST, "/student/**").hasAuthority("MEMBER")
+                .antMatchers(HttpMethod.GET, "/student/**").hasAuthority("MEMBER")
+
+                .antMatchers("/student/**").hasAuthority("ADMIN")
+
+                .antMatchers(HttpMethod.POST, "/teacher/**").hasAuthority("MEMBER")
+                .antMatchers(HttpMethod.GET, "/teacher/**").hasAuthority("MEMBER")
+
+                .antMatchers("/teacher/**").hasAuthority("ADMIN")
+
                 .anyRequest().authenticated();
         http
                 .sessionManagement()
