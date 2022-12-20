@@ -1,5 +1,7 @@
 package live.goapi.domain.student.service;
 
+import live.goapi.domain.club.entity.Club;
+import live.goapi.domain.club.repository.ClubRepository;
 import live.goapi.domain.student.entity.Student;
 import live.goapi.domain.student.exception.NotFoundStudentException;
 import live.goapi.domain.student.presentation.dto.response.ResponseStudent;
@@ -11,18 +13,15 @@ import org.springframework.stereotype.Service;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Optional;
 
 @Service
 @RequiredArgsConstructor
 public class StudentInfoService {
 
     private final StudentRepository studentRepository;
-
-    public void saveStudentInfo(RequestStudent requestStudent) {
-        Student student = requestStudent.toEntity();
-        studentRepository.save(student);
-    }
-
+    private final ClubRepository clubRepository;
+    
     public ResponseStudent getStudentInfoByStudentName (String studentName) {
         Student findStudent = studentRepository.findByStudentName(studentName).orElseThrow(
                 () -> new NotFoundStudentException("존재하지 않는 학생입니다"));
@@ -37,26 +36,45 @@ public class StudentInfoService {
 
     public List<ResponseStudent> getStudentsInfoByMajor(String major) {
         List<Student> students = studentRepository.findByStudentMajor(major);
-        List<ResponseStudent> responseList = new ArrayList<>();
+        
+        
         if(students.isEmpty()){
             throw new NotFoundStudentException("존재하지 않는 학생들입니다.");
         }
 
-        for (Student student : students) {
-            responseList.add(new ResponseStudent(
-                    student.getStudentName(),
-                    student.getStudentNumber(),
-                    student.getStudentMajor()));
+        List<ResponseStudent> responseList = makeResponseStudentList(students);
+
+        return responseList;
+    }
+    
+    public List<ResponseStudent> getStudentsByClub(String clubName) {
+        Optional<Club> club = clubRepository.findByClubName(clubName);
+        List<Student> clubStudents = studentRepository.findByClub(club.get());
+        
+        
+        if(clubStudents.isEmpty()) {
+            throw new NotFoundStudentException("존재하지 않는 학생들입니다.");
         }
+
+        List<ResponseStudent> responseList = makeResponseStudentList(clubStudents);
 
         return responseList;
     }
 
-    public ResponseStudent makeResponseStudent(Student findStudent) {
+    private ResponseStudent makeResponseStudent(Student findStudent) {
         return ResponseStudent.builder()
                 .studentName(findStudent.getStudentName())
                 .studentNumber(findStudent.getStudentNumber())
                 .studentMajor(findStudent.getStudentMajor())
+                .club(findStudent.getClub().getClubName())
                 .build();
+    }
+    
+    private List<ResponseStudent> makeResponseStudentList(List<Student> students) {
+        List<ResponseStudent> responseList = new ArrayList<>();
+        for (Student clubStudent : students) {
+            responseList.add(makeResponseStudent(clubStudent));
+        }
+        return responseList;
     }
 }
