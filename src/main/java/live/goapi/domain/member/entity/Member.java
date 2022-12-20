@@ -1,5 +1,6 @@
 package live.goapi.domain.member.entity;
 
+import live.goapi.domain.api_key.entity.ApiKey;
 import live.goapi.global.role.Role;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
@@ -38,6 +39,10 @@ public class Member  {
     @Column(name = "role")
     @Enumerated(EnumType.STRING)
     private Role role;
+
+    @OneToOne
+    @Column(name = "api_key_id" , nullable = true)
+    private ApiKey apiKey;
 
     public void updatePassword(String password) {
         this.password = password;
