@@ -1,4 +1,4 @@
-package live.goapi.domain.club.presentation.dto;
+package live.goapi.domain.auth.presentation.dto.dto;
 
 import lombok.AllArgsConstructor;
 import lombok.Getter;

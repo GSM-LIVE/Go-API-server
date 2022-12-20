@@ -1,6 +1,6 @@
 package live.goapi.domain.club.presentation;
 
-import live.goapi.domain.club.presentation.dto.ClubMemberRequest;
+import live.goapi.domain.auth.presentation.dto.dto.ClubMemberRequest;
 import live.goapi.domain.club.service.ClubMemberService;
 import live.goapi.domain.student.presentation.dto.response.ResponseStudent;
 import lombok.RequiredArgsConstructor;

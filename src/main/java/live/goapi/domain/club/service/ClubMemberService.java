@@ -2,9 +2,8 @@ package live.goapi.domain.club.service;
 
 import live.goapi.domain.club.entity.Club;
 import live.goapi.domain.club.exception.ClubNotFoundException;
-import live.goapi.domain.club.presentation.dto.ClubMemberRequest;
+import live.goapi.domain.auth.presentation.dto.dto.ClubMemberRequest;
 import live.goapi.domain.club.repository.ClubRepository;
-import live.goapi.domain.member.repository.MemberRepository;
 import live.goapi.domain.student.entity.Student;
 import live.goapi.domain.student.presentation.dto.response.ResponseStudent;
 import live.goapi.domain.student.repository.StudentRepository;
