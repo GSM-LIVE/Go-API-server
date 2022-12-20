@@ -7,6 +7,7 @@ import live.goapi.global.security.exception.TokenExpirationException;
 import live.goapi.global.security.exception.TokenNotValidException;
 import live.goapi.global.security.jwt.properties.JwtProperties;
 import lombok.AllArgsConstructor;
+import lombok.Getter;
 import lombok.RequiredArgsConstructor;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
 import org.springframework.security.core.userdetails.UserDetails;
@@ -20,6 +21,7 @@ import java.util.Date;
 
 @RequiredArgsConstructor
 @Component
+@Getter
 public class JwtTokenProvider {
 
     private final MemberDetailsService memberDetailsService;
@@ -97,6 +99,5 @@ public class JwtTokenProvider {
         UserDetails userDetails = memberDetailsService.loadUserByUsername(email);
         return new UsernamePasswordAuthenticationToken(userDetails, null, userDetails.getAuthorities());
     }
-
 
 }
