@@ -11,5 +11,8 @@ import javax.validation.constraints.NotBlank;
 @NoArgsConstructor
 public class MemberChangePasswordRequest {
     @NotBlank(message = "비밀번호는 null 이나 공백을 허용하지 않습니다.")
-    private String password;
+    private String currentPassword;
+
+    @NotBlank(message = "비밀번호는 null 이나 공백을 허용하지 않습니다.")
+    private String newPassword;
 }

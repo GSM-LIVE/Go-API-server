@@ -21,9 +21,9 @@ public class MemberChangePasswordService {
     @Transactional(rollbackFor = Exception.class)
     public void changePassword(MemberChangePasswordRequest request) {
         Member member = memberFacade.getCurrentMember();
-        if(request.getPassword().equals(member.getPassword())){
+        if(request.getCurrentPassword().equals(member.getPassword())){
             if(validateAuthentication((member.getEmail()))) {
-                member.updatePassword(passwordEncoder.encode(request.getPassword()));
+                member.updatePassword(passwordEncoder.encode(request.getNewPassword()));
             }
         }
     }
