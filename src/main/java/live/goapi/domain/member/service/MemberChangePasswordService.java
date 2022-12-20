@@ -22,17 +22,7 @@ public class MemberChangePasswordService {
     public void changePassword(MemberChangePasswordRequest request) {
         Member member = memberFacade.getCurrentMember();
         if(request.getCurrentPassword().equals(member.getPassword())){
-            if(validateAuthentication((member.getEmail()))) {
                 member.updatePassword(passwordEncoder.encode(request.getNewPassword()));
-            }
         }
-    }
-
-    private Boolean validateAuthentication(String email) {
-        EmailAuth emailAuth = emailAuthRepository.findById(email).orElseThrow(()-> new NotVerifyEmailException("이메일이 인증되지 않았습니다."));
-        if(!emailAuth.getAuthentication()) {
-            throw new NotVerifyEmailException("이메일이 인증되지 않았습니다.");
-        }
-        return true;
     }
 }
