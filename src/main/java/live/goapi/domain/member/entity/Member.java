@@ -1,5 +1,6 @@
 package live.goapi.domain.member.entity;
 
+import live.goapi.global.role.Role;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Getter;
@@ -33,5 +34,9 @@ public class Member  {
 
     @Column(name = "major")
     private String major;
+
+    @Column(name = "role")
+    @Enumerated(EnumType.STRING)
+    private Role role;
 
 }
