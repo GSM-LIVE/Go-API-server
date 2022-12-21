@@ -1,6 +1,7 @@
 package live.goapi.domain.teacher.service;
 
 import live.goapi.domain.api_key.service.CheckApiKeyService;
+import live.goapi.domain.student.presentation.dto.response.ResponseStudent;
 import live.goapi.domain.teacher.entity.Teacher;
 import live.goapi.domain.teacher.exception.NotFoundTeacherException;
 import live.goapi.domain.teacher.presentation.dto.request.RequestTeacherMajor;
@@ -30,12 +31,18 @@ public class TeacherInfoService {
         return makeResponseTeacher(teacher);
     }
 
-    public ResponseTeacher getTeacherInfoByMajor(RequestTeacherMajor request) {
+    public List<ResponseTeacher> getTeacherInfoByMajor(RequestTeacherMajor request) {
         checkApiKeyService.checkApiKey(request.getRandomKey());
 
-        Teacher teacher = teacherRepository.findByTeacherName(request.getMajor())
-                .orElseThrow(() -> new NotFoundTeacherException("존재하지 않는 선생님입니다."));
-        return makeResponseTeacher(teacher);
+        List<Teacher> teachers = teacherRepository.findByTeacherMajor(request.getMajor());
+
+        if(teachers.isEmpty()) {
+            throw new NotFoundTeacherException("존재하지 않는 선생님들입니다.");
+        }
+
+        List<ResponseTeacher> responseTeacherList = makeResponseTeacherList(teachers);
+
+        return responseTeacherList;
     }
 
     public ResponseTeacher makeResponseTeacher(Teacher teacher){
@@ -44,6 +51,14 @@ public class TeacherInfoService {
                 .teacherName(teacher.getTeacherName())
                 .major(teacher.getTeacherMajor())
                 .build();
+    }
+
+    public List<ResponseTeacher> makeResponseTeacherList(List<Teacher> teachers) {
+        List<ResponseTeacher> responseTeacherList = new ArrayList<>();
+        for(Teacher majorTeacher : teachers) {
+            responseTeacherList.add(makeResponseTeacher(majorTeacher));
+        }
+        return responseTeacherList;
     }
 
 }

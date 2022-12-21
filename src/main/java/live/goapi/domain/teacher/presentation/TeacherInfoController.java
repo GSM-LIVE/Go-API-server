@@ -11,6 +11,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import javax.validation.Valid;
+import java.util.List;
 
 @RestController
 @Slf4j
@@ -27,8 +28,8 @@ public class TeacherInfoController {
     }
 
     @GetMapping("/major")
-    public ResponseEntity<ResponseTeacher> getTeacherInfoBySubject(@RequestBody @Valid RequestTeacherMajor request) {
-        ResponseTeacher response = teacherInfoService.getTeacherInfoByMajor(request);
+    public ResponseEntity<List<ResponseTeacher>> getTeacherInfoBySubject(@RequestBody @Valid RequestTeacherMajor request) {
+        List<ResponseTeacher> response = teacherInfoService.getTeacherInfoByMajor(request);
         return new ResponseEntity<>(response, HttpStatus.OK);
     }
 }
