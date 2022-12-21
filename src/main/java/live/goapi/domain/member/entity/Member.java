@@ -6,10 +6,8 @@ import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
-import org.springframework.security.core.userdetails.UserDetails;
 
 import javax.persistence.*;
-import java.util.Optional;
 
 @Entity
 @Getter @Builder
@@ -44,12 +42,18 @@ public class Member  {
     @OneToOne(optional = true)
     private ApiKey apiKey;
 
+    private boolean apiKeyAuthenticated = false;
+
     public void updatePassword(String password) {
         this.password = password;
     }
 
     public void updateApiKey(ApiKey apiKey) {
         this.apiKey = apiKey;
+    }
+
+    public void updateApiKeyAuthenticated(boolean apiKeyAuthenticated) {
+        this.apiKeyAuthenticated = apiKeyAuthenticated;
     }
 
 }

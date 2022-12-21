@@ -1,5 +1,7 @@
 package live.goapi.domain.student.service;
 
+import live.goapi.domain.api_key.facade.ApiKeyFacade;
+import live.goapi.domain.api_key.service.CheckApiKeyService;
 import live.goapi.domain.club.entity.Club;
 import live.goapi.domain.club.repository.ClubRepository;
 import live.goapi.domain.student.entity.Student;
@@ -21,7 +23,7 @@ public class StudentInfoService {
 
     private final StudentRepository studentRepository;
     private final ClubRepository clubRepository;
-    
+
     public ResponseStudent getStudentInfoByStudentName (String studentName) {
         Student findStudent = studentRepository.findByStudentName(studentName).orElseThrow(
                 () -> new NotFoundStudentException("존재하지 않는 학생입니다"));

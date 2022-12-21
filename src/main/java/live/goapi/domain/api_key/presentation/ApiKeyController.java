@@ -13,7 +13,6 @@ import org.springframework.web.bind.annotation.RestController;
 @RestController
 @RequiredArgsConstructor
 @RequestMapping("/api-key")
-@Slf4j
 public class ApiKeyController {
 
     private final RandomApiKeyService randomApiKeyService;
@@ -21,7 +20,6 @@ public class ApiKeyController {
     @PostMapping
     public ResponseEntity<ApiKeyResponse> getNewApiKey() {
         ApiKeyResponse response = randomApiKeyService.execute();
-        log.info("response ={}" , response);
         return new ResponseEntity<>(response , HttpStatus.CREATED);
     }
 }

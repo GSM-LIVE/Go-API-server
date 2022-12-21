@@ -7,5 +7,6 @@ import java.util.Optional;
 
 public interface ApiKeyRepository extends JpaRepository<ApiKey, Long> {
 
+    boolean existsByRandomKey(String randomKey);
     Optional<ApiKey> findByRandomKey(String randomKey);
 }
