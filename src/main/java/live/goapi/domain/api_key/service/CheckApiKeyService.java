@@ -3,8 +3,6 @@ package live.goapi.domain.api_key.service;
 import live.goapi.domain.api_key.exception.MisMatchRandomKeyException;
 import live.goapi.domain.api_key.facade.ApiKeyFacade;
 import live.goapi.domain.api_key.repository.ApiKeyRepository;
-import live.goapi.domain.member.facade.MemberFacade;
-import live.goapi.domain.member.repository.MemberRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 
