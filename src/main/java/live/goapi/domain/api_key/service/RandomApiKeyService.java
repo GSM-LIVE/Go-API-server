@@ -1,6 +1,7 @@
 package live.goapi.domain.api_key.service;
 
 import live.goapi.domain.api_key.entity.ApiKey;
+import live.goapi.domain.api_key.exception.ExistsRandomKeyException;
 import live.goapi.domain.api_key.presentation.dto.response.ApiKeyResponse;
 import live.goapi.domain.api_key.repository.ApiKeyRepository;
 import live.goapi.domain.member.entity.Member;
@@ -23,12 +24,17 @@ public class RandomApiKeyService {
         String randomApiKey = getRandomApiKey();
         Member member = memberFacade.getCurrentMember();
 
+        if(member.isApiKeyAuthenticated()) {
+            throw new ExistsRandomKeyException("이미 랜덤키를 발급했습니다.");
+        }
+
         apiKeyRepository.save(ApiKey
                 .builder()
                 .randomKey(randomApiKey)
                 .build());
 
         member.updateApiKey(apiKeyRepository.findByRandomKey(randomApiKey).get());
+        member.updateApiKeyAuthenticated(true);
 
         return ApiKeyResponse
                 .builder()
