@@ -29,7 +29,6 @@ public class Student {
     private String studentMajor;
 
     @ManyToOne
-    @Column(name = "club_id")
     private Club club;
 
 }

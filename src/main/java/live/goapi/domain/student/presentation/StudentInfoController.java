@@ -28,7 +28,7 @@ public class StudentInfoController {
      * "major" : "Back-End"
      * }
      */
-    @PostMapping("/info{name")
+    @PostMapping("/info/name")
     public ResponseStudent getStudentInfoByName(@RequestBody String name) {
         return studentInfoService.getStudentInfoByStudentName(name);
     }

@@ -41,7 +41,6 @@ public class Member  {
     private Role role;
 
     @OneToOne
-    @Column(name = "api_key_id" , nullable = true)
     private ApiKey apiKey;
 
     public void updatePassword(String password) {
