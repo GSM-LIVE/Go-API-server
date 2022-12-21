@@ -57,6 +57,7 @@ public class SecurityConfig {
 
                 .antMatchers("/teacher/**").hasAuthority("ADMIN")
 
+                .antMatchers(HttpMethod.POST,"/api-key/**").permitAll()
                 .anyRequest().authenticated();
         http
                 .sessionManagement()

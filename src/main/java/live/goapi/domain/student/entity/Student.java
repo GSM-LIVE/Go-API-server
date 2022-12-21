@@ -1,5 +1,6 @@
 package live.goapi.domain.student.entity;
 
+import live.goapi.domain.api_key.entity.ApiKey;
 import live.goapi.domain.club.entity.Club;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
@@ -29,4 +30,5 @@ public class Student {
 
     @ManyToOne
     private Club club;
+
 }

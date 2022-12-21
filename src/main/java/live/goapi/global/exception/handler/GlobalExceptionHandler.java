@@ -1,5 +1,6 @@
 package live.goapi.global.exception.handler;
 
+import live.goapi.domain.api_key.exception.ExistsRandomKeyException;
 import live.goapi.domain.auth.exception.ExistsEmailException;
 import live.goapi.domain.auth.exception.RefreshTokenNotFoundException;
 import live.goapi.domain.club.exception.ClubNotFoundException;
@@ -103,7 +104,14 @@ public class GlobalExceptionHandler {
     }
 
     @ExceptionHandler(ExistsEmailException.class)
-    public ResponseEntity<ErrorResponse> handleExistsEmailExceptio(HttpServletRequest request , ExistsEmailException e) {
+    public ResponseEntity<ErrorResponse> handleExistsEmailException(HttpServletRequest request , ExistsEmailException e) {
+        printError(request, e, e.getErrorCode().getMessage());
+        ErrorResponse errorResponse = new ErrorResponse(e.getErrorCode().getMessage(), e.getErrorCode().getStatus());
+        return new ResponseEntity<>(errorResponse, HttpStatus.valueOf(e.getErrorCode().getStatus()));
+    }
+
+    @ExceptionHandler(ExistsRandomKeyException.class)
+    public ResponseEntity<ErrorResponse> handleExistsRandomKeyException(HttpServletRequest request , ExistsRandomKeyException e) {
         printError(request, e, e.getErrorCode().getMessage());
         ErrorResponse errorResponse = new ErrorResponse(e.getErrorCode().getMessage(), e.getErrorCode().getStatus());
         return new ResponseEntity<>(errorResponse, HttpStatus.valueOf(e.getErrorCode().getStatus()));
