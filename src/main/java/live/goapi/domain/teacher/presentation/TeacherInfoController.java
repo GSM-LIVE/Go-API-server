@@ -1,6 +1,6 @@
 package live.goapi.domain.teacher.presentation;
 
-import live.goapi.domain.teacher.entity.Teacher;
+import live.goapi.domain.teacher.presentation.dto.request.RequestTeacherMajor;
 import live.goapi.domain.teacher.presentation.dto.request.RequestTeacherName;
 import live.goapi.domain.teacher.presentation.dto.response.ResponseTeacher;
 import live.goapi.domain.teacher.service.TeacherInfoService;
@@ -11,7 +11,6 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import javax.validation.Valid;
-import java.util.List;
 
 @RestController
 @Slf4j
@@ -27,9 +26,10 @@ public class TeacherInfoController {
         return new ResponseEntity<>(response, HttpStatus.OK);
     }
 
-    @GetMapping("/{subject}")
-    public List<ResponseTeacher> getTeacherInfoBySubject(@PathVariable String subject) {
-        return teacherInfoService.getTeacherInfoBySubject(subject);
+    @GetMapping("/major")
+    public ResponseEntity<ResponseTeacher> getTeacherInfoBySubject(@RequestBody @Valid RequestTeacherMajor request) {
+        ResponseTeacher response = teacherInfoService.getTeacherInfoByMajor(request);
+        return new ResponseEntity<>(response, HttpStatus.OK);
     }
 }
 

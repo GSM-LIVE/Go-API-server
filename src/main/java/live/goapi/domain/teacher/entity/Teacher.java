@@ -24,7 +24,7 @@ public class Teacher {
     @Column(name = "teacher_name" , nullable = false , unique = true)
     private String teacherName;
 
-    @Column(name = "subject" , nullable = false, unique = true)
-    private String subject;
+    @Column(name = "teacher_major" , nullable = false, unique = true)
+    private String teacherMajor;
 
 }
