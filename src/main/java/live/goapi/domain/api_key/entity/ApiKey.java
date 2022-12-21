@@ -22,6 +22,6 @@ public class ApiKey {
     @Column(name = "random_key")
     private String randomKey;
 
-    @OneToOne
+    @OneToOne(optional = true)
     private Member member;
 }

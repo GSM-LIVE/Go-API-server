@@ -9,6 +9,7 @@ import lombok.NoArgsConstructor;
 import org.springframework.security.core.userdetails.UserDetails;
 
 import javax.persistence.*;
+import java.util.Optional;
 
 @Entity
 @Getter @Builder
@@ -40,11 +41,15 @@ public class Member  {
     @Enumerated(EnumType.STRING)
     private Role role;
 
-    @OneToOne
+    @OneToOne(optional = true)
     private ApiKey apiKey;
 
     public void updatePassword(String password) {
         this.password = password;
+    }
+
+    public void updateApiKey(ApiKey apiKey) {
+        this.apiKey = apiKey;
     }
 
 }

@@ -7,7 +7,9 @@ import live.goapi.domain.api_key.repository.ApiKeyRepository;
 import live.goapi.domain.member.entity.Member;
 import live.goapi.domain.member.facade.MemberFacade;
 import lombok.RequiredArgsConstructor;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import java.util.Random;
 
@@ -18,18 +20,17 @@ public class RandomApiKeyService {
     private final ApiKeyRepository apiKeyRepository;
     private final MemberFacade memberFacade;
 
+    @Transactional
     public ApiKeyResponse execute() {
         String randomApiKey = getRandomApiKey();
         Member member = memberFacade.getCurrentMember();
-
-        if(apiKeyRepository.existsByRandomKey(member.getApiKey().getRandomKey())){
-            throw new ExistsRandomKeyException("랜덤키가 이미 발급되었습니다.");
-        }
 
         apiKeyRepository.save(ApiKey
                 .builder()
                 .randomKey(randomApiKey)
                 .build());
+
+        member.updateApiKey(apiKeyRepository.findByRandomKey(randomApiKey).get());
 
         return ApiKeyResponse
                 .builder()
