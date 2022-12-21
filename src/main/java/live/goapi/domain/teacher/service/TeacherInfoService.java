@@ -1,8 +1,9 @@
 package live.goapi.domain.teacher.service;
 
+import live.goapi.domain.api_key.service.CheckApiKeyService;
 import live.goapi.domain.teacher.entity.Teacher;
 import live.goapi.domain.teacher.exception.NotFoundTeacherException;
-import live.goapi.domain.teacher.presentation.dto.request.RequestTeacher;
+import live.goapi.domain.teacher.presentation.dto.request.RequestTeacherName;
 import live.goapi.domain.teacher.presentation.dto.response.ResponseTeacher;
 import live.goapi.domain.teacher.repository.TeacherRepository;
 import lombok.RequiredArgsConstructor;
@@ -16,15 +17,15 @@ import java.util.List;
 public class TeacherInfoService {
     private final TeacherRepository teacherRepository;
 
-    public void saveTeacherInfo(RequestTeacher requestTeacher) {
-        Teacher teacher = requestTeacher.toEntity();
-        teacherRepository.save(teacher);
-    }
+    private CheckApiKeyService checkApiKeyService;
 
-    public ResponseTeacher getTeacherInfoByName (String teacherName) {
-        Teacher findTeacher = teacherRepository.findByTeacherName(teacherName).orElseThrow(
-                () -> new NotFoundTeacherException("존재하지 않는 선생님입니다"));
-        return makeResponseTeacher(findTeacher);
+
+    public ResponseTeacher getTeacherInfoByName (RequestTeacherName request) {
+        checkApiKeyService.checkApiKey(request.getRandomKey());
+
+        Teacher teacher = teacherRepository.findByTeacherName(request.getTeacherName())
+                .orElseThrow(() -> new NotFoundTeacherException("존재하지 않는 선생님입니다."));
+        return makeResponseTeacher(teacher);
     }
 
     public List<ResponseTeacher> getTeacherInfoBySubject(String subject) {
@@ -41,12 +42,12 @@ public class TeacherInfoService {
         return responseList;
     }
 
-    public ResponseTeacher makeResponseTeacher(Teacher findTeacher){
+    public ResponseTeacher makeResponseTeacher(Teacher teacher){
 
-        ResponseTeacher responseTeacher = new ResponseTeacher(
-                findTeacher.getTeacherName(),
-                findTeacher.getSubject());
-        return responseTeacher;
+        return ResponseTeacher.builder()
+                .teacherName(teacher.getTeacherName())
+                .major(teacher.getSubject())
+                .build();
     }
 
 }
