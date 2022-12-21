@@ -1,13 +1,11 @@
 package live.goapi.domain.api_key.service;
 
 import live.goapi.domain.api_key.entity.ApiKey;
-import live.goapi.domain.api_key.exception.ExistsRandomKeyException;
 import live.goapi.domain.api_key.presentation.dto.response.ApiKeyResponse;
 import live.goapi.domain.api_key.repository.ApiKeyRepository;
 import live.goapi.domain.member.entity.Member;
 import live.goapi.domain.member.facade.MemberFacade;
 import lombok.RequiredArgsConstructor;
-import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
