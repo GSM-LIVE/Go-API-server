@@ -15,7 +15,7 @@ import javax.persistence.*;
 public class ApiKey {
 
     @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "api_key_id")
     private Long apiKeyId;
 

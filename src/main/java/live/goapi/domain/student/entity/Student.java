@@ -15,11 +15,11 @@ import javax.persistence.*;
 @NoArgsConstructor
 public class Student {
     @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "student_id", nullable = false)
     private Integer studentId;
 
-    @Column(name = "studnet_name")
+    @Column(name = "student_name")
     private String studentName;
 
     @Column(name = "student_number")

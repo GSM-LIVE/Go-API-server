@@ -16,7 +16,7 @@ import java.util.List;
 public class Club {
 
     @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "club_id")
     private Long clubId;
 
