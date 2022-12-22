@@ -8,7 +8,7 @@ import lombok.NoArgsConstructor;
 
 import javax.persistence.*;
 
-@Entity
+@Entity @Table(name = "api_key")
 @Getter @Builder
 @NoArgsConstructor
 @AllArgsConstructor
