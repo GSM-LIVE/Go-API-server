@@ -1,14 +1,16 @@
 package live.goapi.domain.teacher.presentation;
 
+import live.goapi.domain.teacher.presentation.dto.request.RequestTeacherMajor;
+import live.goapi.domain.teacher.presentation.dto.request.RequestTeacherName;
 import live.goapi.domain.teacher.presentation.dto.response.ResponseTeacher;
 import live.goapi.domain.teacher.service.TeacherInfoService;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.*;
 
+import javax.validation.Valid;
 import java.util.List;
 
 @RestController
@@ -19,14 +21,16 @@ public class TeacherInfoController {
 
     private TeacherInfoService teacherInfoService;
 
-    @GetMapping("/info/{teacherName}")
-    public ResponseTeacher getTeacherInfoByName(@PathVariable String teacherName) {
-        return teacherInfoService.getTeacherInfoByName(teacherName);
+    @GetMapping("/name")
+    public ResponseEntity<ResponseTeacher> getTeacherInfoByName(@RequestBody @Valid RequestTeacherName request) {
+        ResponseTeacher response = teacherInfoService.getTeacherInfoByName(request);
+        return new ResponseEntity<>(response, HttpStatus.OK);
     }
 
-    @GetMapping("/{subject}")
-    public List<ResponseTeacher> getTeacherInfoBySubject(@PathVariable String subject) {
-        return teacherInfoService.getTeacherInfoBySubject(subject);
+    @GetMapping("/major")
+    public ResponseEntity<List<ResponseTeacher>> getTeacherInfoBySubject(@RequestBody @Valid RequestTeacherMajor request) {
+        List<ResponseTeacher> response = teacherInfoService.getTeacherInfoByMajor(request);
+        return new ResponseEntity<>(response, HttpStatus.OK);
     }
 }
 
