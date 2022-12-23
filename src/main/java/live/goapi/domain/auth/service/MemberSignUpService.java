@@ -2,7 +2,7 @@ package live.goapi.domain.auth.service;
 
 import live.goapi.domain.auth.exception.ExistsEmailException;
 import live.goapi.domain.auth.exception.NotVerifyEmailException;
-import live.goapi.domain.auth.presentation.dto.dto.request.MemberSignUpRequest;
+import live.goapi.domain.auth.presentation.dto.request.MemberSignUpRequest;
 import live.goapi.domain.email.entity.EmailAuth;
 import live.goapi.domain.email.repository.EmailAuthRepository;
 import live.goapi.domain.member.entity.Member;

@@ -1,4 +1,4 @@
-package live.goapi.domain.auth.presentation.dto.dto.request;
+package live.goapi.domain.auth.presentation.dto.request;
 
 import lombok.AllArgsConstructor;
 import lombok.Getter;

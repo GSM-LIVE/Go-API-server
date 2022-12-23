@@ -1,8 +1,8 @@
 package live.goapi.domain.auth.service;
 
 import live.goapi.domain.auth.entity.RefreshToken;
-import live.goapi.domain.auth.presentation.dto.dto.request.MemberLoginRequest;
-import live.goapi.domain.auth.presentation.dto.dto.response.TokenResponse;
+import live.goapi.domain.auth.presentation.dto.request.MemberLoginRequest;
+import live.goapi.domain.auth.presentation.dto.response.TokenResponse;
 import live.goapi.domain.auth.repository.RefreshTokenRepository;
 import live.goapi.domain.member.entity.Member;
 import live.goapi.domain.member.exception.MemberNotFoundException;

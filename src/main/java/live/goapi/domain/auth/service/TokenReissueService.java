@@ -2,7 +2,7 @@ package live.goapi.domain.auth.service;
 
 import live.goapi.domain.auth.entity.RefreshToken;
 import live.goapi.domain.auth.exception.RefreshTokenNotFoundException;
-import live.goapi.domain.auth.presentation.dto.dto.response.NewTokenResponse;
+import live.goapi.domain.auth.presentation.dto.response.NewTokenResponse;
 import live.goapi.domain.auth.repository.RefreshTokenRepository;
 import live.goapi.global.security.exception.TokenNotValidException;
 import live.goapi.global.security.jwt.JwtTokenProvider;
