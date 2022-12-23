@@ -10,6 +10,6 @@ public class AlreadyWriteSurveyException extends RuntimeException {
 
     public AlreadyWriteSurveyException(String message) {
         super(message);
-        this.errorCode =
+        this.errorCode = ErrorCode.ALREADY_WRITE_SURVEY;
     }
 }
