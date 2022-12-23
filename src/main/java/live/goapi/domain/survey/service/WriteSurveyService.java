@@ -22,7 +22,7 @@ public class WriteSurveyService {
 
         Member currentMember = memberFacade.getCurrentMember();
 
-        if (!currentMember.isSurveyAuthenticated()) {
+        if (currentMember.isSurveyAuthenticated()) {
             throw new AlreadyWriteSurveyException("이미 설문조사를 완료한 회원입니다.");
         }
 

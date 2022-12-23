@@ -6,6 +6,8 @@ import live.goapi.domain.api_key.presentation.dto.response.ApiKeyResponse;
 import live.goapi.domain.api_key.repository.ApiKeyRepository;
 import live.goapi.domain.member.entity.Member;
 import live.goapi.domain.member.facade.MemberFacade;
+import live.goapi.domain.survey.exception.AlreadyWriteSurveyException;
+import live.goapi.domain.survey.exception.NotWriteSurveyException;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
@@ -26,6 +28,10 @@ public class RandomApiKeyService {
 
         if(member.isApiKeyAuthenticated()) {
             throw new ExistsRandomKeyException("이미 랜덤키를 발급했습니다.");
+        }
+
+        if(!member.isSurveyAuthenticated()) {
+            throw new NotWriteSurveyException("아직 설문을 진행하지 않은 계정입니다.");
         }
 
         apiKeyRepository.save(ApiKey
