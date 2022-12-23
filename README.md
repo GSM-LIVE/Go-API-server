@@ -1,5 +1,8 @@
 ### Go-API
-GSM Open Source API
+
+![](./material/goapi.png)
+
+<br>
 
 **Getting Start**
 
@@ -16,4 +19,4 @@ $ git checkout feature/{name}
 **Stack**
 - JDK 11
 - Spring Spring boot
-- JPA, H2 DataBase
+- JPA, MySQL
