@@ -11,6 +11,8 @@ import live.goapi.domain.email.exception.MisMatchAuthCodeException;
 import live.goapi.domain.student.exception.NotFoundStudentException;
 import live.goapi.domain.member.exception.MemberNotFoundException;
 import live.goapi.domain.auth.exception.PasswordMismatchException;
+import live.goapi.domain.survey.exception.AlreadyWriteSurveyException;
+import live.goapi.domain.survey.exception.NotWriteSurveyException;
 import live.goapi.global.exception.ErrorResponse;
 import live.goapi.domain.teacher.exception.NotFoundTeacherException;
 import live.goapi.global.security.exception.TokenExpirationException;
@@ -120,6 +122,20 @@ public class GlobalExceptionHandler {
 
     @ExceptionHandler(MisMatchRandomKeyException.class)
     public ResponseEntity<ErrorResponse> handleMisMatchRandomKeyException(HttpServletRequest request , MisMatchRandomKeyException e) {
+        printError(request, e, e.getErrorCode().getMessage());
+        ErrorResponse errorResponse = new ErrorResponse(e.getErrorCode().getMessage(), e.getErrorCode().getStatus());
+        return new ResponseEntity<>(errorResponse, HttpStatus.valueOf(e.getErrorCode().getStatus()));
+    }
+
+    @ExceptionHandler(NotWriteSurveyException.class)
+    public ResponseEntity<ErrorResponse> handleNotWriteSurveyException(HttpServletRequest request , NotWriteSurveyException e) {
+        printError(request, e, e.getErrorCode().getMessage());
+        ErrorResponse errorResponse = new ErrorResponse(e.getErrorCode().getMessage(), e.getErrorCode().getStatus());
+        return new ResponseEntity<>(errorResponse, HttpStatus.valueOf(e.getErrorCode().getStatus()));
+    }
+
+    @ExceptionHandler(AlreadyWriteSurveyException.class)
+    public ResponseEntity<ErrorResponse> handleAlreadyWriteSurveyException(HttpServletRequest request , AlreadyWriteSurveyException e) {
         printError(request, e, e.getErrorCode().getMessage());
         ErrorResponse errorResponse = new ErrorResponse(e.getErrorCode().getMessage(), e.getErrorCode().getStatus());
         return new ResponseEntity<>(errorResponse, HttpStatus.valueOf(e.getErrorCode().getStatus()));

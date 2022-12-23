@@ -1,5 +1,6 @@
 package live.goapi.domain.club.presentation;
 
+import live.goapi.domain.club.presentation.dto.request.RequestClub;
 import live.goapi.domain.club.presentation.dto.response.ResponseClub;
 import live.goapi.domain.club.service.ClubMemberService;
 import lombok.RequiredArgsConstructor;
@@ -20,8 +21,8 @@ public class ClubController {
     private final ClubMemberService clubMemberService;
 
     @PostMapping
-    public ResponseEntity<List<ResponseClub>> getClubList() {
-        List<ResponseClub> response = clubMemberService.getClubs();
+    public ResponseEntity<List<ResponseClub>> getClubList(RequestClub request) {
+        List<ResponseClub> response = clubMemberService.getClubs(request);
         return new ResponseEntity<>(response , HttpStatus.OK);
     }
 }

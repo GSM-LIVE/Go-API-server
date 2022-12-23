@@ -40,9 +40,12 @@ public class Member  {
     private Role role;
 
     @OneToOne(optional = true)
+    @JoinColumn(name = "api_key_id")
     private ApiKey apiKey;
 
     private boolean apiKeyAuthenticated = false;
+
+    private boolean surveyAuthenticated = false;
 
     public void updatePassword(String password) {
         this.password = password;
@@ -54,6 +57,10 @@ public class Member  {
 
     public void updateApiKeyAuthenticated(boolean apiKeyAuthenticated) {
         this.apiKeyAuthenticated = apiKeyAuthenticated;
+    }
+
+    public void updateSurveyAuthenticated(boolean surveyAuthenticated) {
+        this.surveyAuthenticated = surveyAuthenticated;
     }
 
 }
