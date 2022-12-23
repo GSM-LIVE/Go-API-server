@@ -44,6 +44,8 @@ public class Member  {
 
     private boolean apiKeyAuthenticated = false;
 
+    private boolean surveyAuthenticated = false;
+
     public void updatePassword(String password) {
         this.password = password;
     }
@@ -54,6 +56,10 @@ public class Member  {
 
     public void updateApiKeyAuthenticated(boolean apiKeyAuthenticated) {
         this.apiKeyAuthenticated = apiKeyAuthenticated;
+    }
+
+    public void updateSurveyAuthenticated(boolean surveyAuthenticated) {
+        this.surveyAuthenticated = surveyAuthenticated;
     }
 
 }
