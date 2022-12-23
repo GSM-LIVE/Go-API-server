@@ -40,6 +40,7 @@ public class Member  {
     private Role role;
 
     @OneToOne(optional = true)
+    @JoinColumn(name = "api_key_id")
     private ApiKey apiKey;
 
     private boolean apiKeyAuthenticated = false;
