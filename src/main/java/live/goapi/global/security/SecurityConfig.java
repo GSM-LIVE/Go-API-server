@@ -45,19 +45,18 @@ public class SecurityConfig {
                 .antMatchers(HttpMethod.POST, "/club/**").hasAuthority("MEMBER")
                 .antMatchers(HttpMethod.GET, "/club/**").hasAuthority("MEMBER")
 
-                .antMatchers("/club/**").hasAuthority("ADMIN")
 
                 .antMatchers(HttpMethod.POST, "/student/**").hasAuthority("MEMBER")
                 .antMatchers(HttpMethod.GET, "/student/**").hasAuthority("MEMBER")
 
-                .antMatchers("/student/**").hasAuthority("ADMIN")
 
                 .antMatchers(HttpMethod.POST, "/teacher/**").hasAuthority("MEMBER")
                 .antMatchers(HttpMethod.GET, "/teacher/**").hasAuthority("MEMBER")
 
-                .antMatchers("/teacher/**").hasAuthority("ADMIN")
 
                 .antMatchers(HttpMethod.POST,"/api-key/**").permitAll()
+                .antMatchers(HttpMethod.POST, "/survey/**").permitAll()
+
                 .anyRequest().authenticated();
         http
                 .sessionManagement()
