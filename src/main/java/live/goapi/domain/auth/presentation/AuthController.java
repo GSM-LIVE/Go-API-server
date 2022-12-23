@@ -1,9 +1,9 @@
 package live.goapi.domain.auth.presentation;
 
-import live.goapi.domain.auth.presentation.dto.request.MemberLoginRequest;
-import live.goapi.domain.auth.presentation.dto.request.MemberSignUpRequest;
-import live.goapi.domain.auth.presentation.dto.response.NewTokenResponse;
-import live.goapi.domain.auth.presentation.dto.response.TokenResponse;
+import live.goapi.domain.auth.presentation.dto.dto.request.MemberLoginRequest;
+import live.goapi.domain.auth.presentation.dto.dto.request.MemberSignUpRequest;
+import live.goapi.domain.auth.presentation.dto.dto.response.NewTokenResponse;
+import live.goapi.domain.auth.presentation.dto.dto.response.TokenResponse;
 import live.goapi.domain.auth.service.MemberLoginService;
 import live.goapi.domain.auth.service.MemberSignUpService;
 import live.goapi.domain.auth.service.TokenReissueService;

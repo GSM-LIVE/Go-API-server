@@ -34,7 +34,7 @@ public class WriteSurveyService {
                 .description(request.getDescription())
                 .build();
 
-
         surveyRepository.save(survey);
+        currentMember.updateSurveyAuthenticated(true);
     }
 }

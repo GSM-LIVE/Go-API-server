@@ -1,4 +1,4 @@
-package live.goapi.domain.auth.presentation.dto.response;
+package live.goapi.domain.auth.presentation.dto.dto.response;
 
 import com.fasterxml.jackson.annotation.JsonFormat;
 import lombok.AllArgsConstructor;
@@ -12,7 +12,7 @@ import java.time.ZonedDateTime;
 @AllArgsConstructor
 @NoArgsConstructor
 @Builder
-public class TokenResponse {
+public class NewTokenResponse {
     private String accessToken;
     private String refreshToken;
 
