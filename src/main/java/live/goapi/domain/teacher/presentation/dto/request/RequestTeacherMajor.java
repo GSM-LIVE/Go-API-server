@@ -7,12 +7,11 @@ import lombok.NoArgsConstructor;
 import javax.validation.constraints.NotBlank;
 
 @Getter
-@NoArgsConstructor
 @AllArgsConstructor
 public class RequestTeacherMajor {
     @NotBlank
-    private String major;
+    private final String major;
 
     @NotBlank
-    private String randomKey;
+    private final String randomKey;
 }

@@ -4,6 +4,7 @@ import live.goapi.domain.api_key.service.CheckApiKeyService;
 import live.goapi.domain.student.presentation.dto.response.ResponseStudent;
 import live.goapi.domain.teacher.entity.Teacher;
 import live.goapi.domain.teacher.exception.NotFoundTeacherException;
+import live.goapi.domain.teacher.presentation.dto.request.RequestAllTeacher;
 import live.goapi.domain.teacher.presentation.dto.request.RequestTeacherMajor;
 import live.goapi.domain.teacher.presentation.dto.request.RequestTeacherName;
 import live.goapi.domain.teacher.presentation.dto.response.ResponseTeacher;
@@ -43,6 +44,10 @@ public class TeacherInfoService {
         List<ResponseTeacher> responseTeacherList = makeResponseTeacherList(teachers);
 
         return responseTeacherList;
+    }
+
+    public List<ResponseTeacher> getAllTeachers(RequestAllTeacher request) {
+
     }
 
     public ResponseTeacher makeResponseTeacher(Teacher teacher){
