@@ -41,13 +41,23 @@ public class TeacherInfoService {
             throw new NotFoundTeacherException("존재하지 않는 선생님들입니다.");
         }
 
-        List<ResponseTeacher> responseTeacherList = makeResponseTeacherList(teachers);
+        List<ResponseTeacher> response = makeResponseTeacherList(teachers);
 
-        return responseTeacherList;
+        return response;
     }
 
     public List<ResponseTeacher> getAllTeachers(RequestAllTeacher request) {
+        checkApiKeyService.checkApiKey(request.getRandomKey());
 
+        List<Teacher> teachers = teacherRepository.findAll();
+
+        if(teachers.isEmpty()) {
+            throw new NotFoundTeacherException("존재하지 않는 선생님들입니다.");
+        }
+
+        List<ResponseTeacher> response = makeResponseTeacherList(teachers);
+
+        return response;
     }
 
     public ResponseTeacher makeResponseTeacher(Teacher teacher){
