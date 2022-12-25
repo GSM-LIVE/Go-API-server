@@ -1,5 +1,6 @@
 package live.goapi.domain.teacher.presentation;
 
+import live.goapi.domain.teacher.presentation.dto.request.RequestAllTeacher;
 import live.goapi.domain.teacher.presentation.dto.request.RequestTeacherMajor;
 import live.goapi.domain.teacher.presentation.dto.request.RequestTeacherName;
 import live.goapi.domain.teacher.presentation.dto.response.ResponseTeacher;
@@ -19,15 +20,21 @@ import java.util.List;
 @RequestMapping("/teacher")
 public class TeacherInfoController {
 
-    private TeacherInfoService teacherInfoService;
+    private final TeacherInfoService teacherInfoService;
 
-    @GetMapping("/name")
+    @PostMapping
+    public ResponseEntity<List<ResponseTeacher>> getAllTeachers(@RequestBody @Valid RequestAllTeacher request) {
+        List<ResponseTeacher> response = teacherInfoService.getAllTeachers(request);
+        return new ResponseEntity<>(response, HttpStatus.OK);
+    }
+
+    @PostMapping("/name")
     public ResponseEntity<ResponseTeacher> getTeacherInfoByName(@RequestBody @Valid RequestTeacherName request) {
         ResponseTeacher response = teacherInfoService.getTeacherInfoByName(request);
         return new ResponseEntity<>(response, HttpStatus.OK);
     }
 
-    @GetMapping("/major")
+    @PostMapping("/major")
     public ResponseEntity<List<ResponseTeacher>> getTeacherInfoBySubject(@RequestBody @Valid RequestTeacherMajor request) {
         List<ResponseTeacher> response = teacherInfoService.getTeacherInfoByMajor(request);
         return new ResponseEntity<>(response, HttpStatus.OK);
