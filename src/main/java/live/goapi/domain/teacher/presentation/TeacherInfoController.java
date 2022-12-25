@@ -19,7 +19,7 @@ import java.util.List;
 @RequestMapping("/teacher")
 public class TeacherInfoController {
 
-    private TeacherInfoService teacherInfoService;
+    private final TeacherInfoService teacherInfoService;
 
     @GetMapping("/name")
     public ResponseEntity<ResponseTeacher> getTeacherInfoByName(@RequestBody @Valid RequestTeacherName request) {

@@ -20,7 +20,7 @@ import java.util.List;
 public class TeacherInfoService {
     private final TeacherRepository teacherRepository;
 
-    private CheckApiKeyService checkApiKeyService;
+    private final CheckApiKeyService checkApiKeyService;
 
 
     public ResponseTeacher getTeacherInfoByName (RequestTeacherName request) {
