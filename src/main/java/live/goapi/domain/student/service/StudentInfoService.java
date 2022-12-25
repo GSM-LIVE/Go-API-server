@@ -5,10 +5,7 @@ import live.goapi.domain.club.entity.Club;
 import live.goapi.domain.club.repository.ClubRepository;
 import live.goapi.domain.student.entity.Student;
 import live.goapi.domain.student.exception.NotFoundStudentException;
-import live.goapi.domain.student.presentation.dto.request.RequestStudentClub;
-import live.goapi.domain.student.presentation.dto.request.RequestStudentMajor;
-import live.goapi.domain.student.presentation.dto.request.RequestStudentName;
-import live.goapi.domain.student.presentation.dto.request.RequestStudentNumber;
+import live.goapi.domain.student.presentation.dto.request.*;
 import live.goapi.domain.student.presentation.dto.response.ResponseStudent;
 import live.goapi.domain.student.repository.StudentRepository;
 import live.goapi.domain.teacher.exception.NotFoundTeacherException;
@@ -26,6 +23,8 @@ public class StudentInfoService {
     private final StudentRepository studentRepository;
     private final ClubRepository clubRepository;
     private final CheckApiKeyService checkApiKeyService;
+
+
 
     public ResponseStudent getStudentInfoByStudentName (RequestStudentName request) {
 
@@ -77,6 +76,18 @@ public class StudentInfoService {
         List<ResponseStudent> responseList = makeResponseStudentList(clubStudents);
 
         return responseList;
+    }
+
+    public List<ResponseStudent> getAllStudents(RequestAllStudent request) {
+        checkApiKeyService.checkApiKey(request.getRandomKey());
+        List<Student> students = studentRepository.findAll();
+
+        if(students.isEmpty()) {
+            throw new NotFoundStudentException("존재하지 않는 학생들입니다.");
+        }
+
+        List<ResponseStudent> response = makeResponseStudentList(students);
+        return response;
     }
 
     private ResponseStudent makeResponseStudent(Student findStudent) {
