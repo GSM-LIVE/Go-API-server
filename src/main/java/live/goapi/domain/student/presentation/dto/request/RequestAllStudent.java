@@ -9,5 +9,5 @@ import javax.validation.constraints.NotBlank;
 @AllArgsConstructor
 public class RequestAllStudent {
     @NotBlank
-    private String randomKey;
+    private final String randomKey;
 }
