@@ -1,6 +1,6 @@
 ### Go-API
 
-![](details/goapi.png)
+![](details/images/goapi.png)
 
 <br>
 
