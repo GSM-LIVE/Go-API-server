@@ -17,13 +17,13 @@ public class ApiKeyController {
     private final RandomApiKeyService randomApiKeyService;
     private final LookUpApiKeyService lookUpApiKeyService;
 
-    @GetMapping("/api-key")
+    @GetMapping
     public ResponseEntity<ApiKeyResponse> getApiKey() {
         ApiKeyResponse response = lookUpApiKeyService.lookUpApiKey();
         return ResponseEntity.ok().body(response);
     }
 
-    @GetMapping("/api-key/name")
+    @GetMapping("/name")
     public ResponseEntity<ApiKeyResponse> getApiKeyByMemberName(@RequestBody String name) {
         ApiKeyResponse response = lookUpApiKeyService.lookUpApiKeyByMemberName(name);
         return ResponseEntity.ok().body(response);

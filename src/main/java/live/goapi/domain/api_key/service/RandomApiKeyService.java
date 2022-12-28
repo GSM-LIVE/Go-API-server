@@ -6,7 +6,6 @@ import live.goapi.domain.api_key.presentation.dto.response.ApiKeyResponse;
 import live.goapi.domain.api_key.repository.ApiKeyRepository;
 import live.goapi.domain.member.entity.Member;
 import live.goapi.domain.member.facade.MemberFacade;
-import live.goapi.domain.survey.exception.AlreadyWriteSurveyException;
 import live.goapi.domain.survey.exception.NotWriteSurveyException;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
