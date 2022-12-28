@@ -18,7 +18,7 @@ public enum ErrorCode {
     ALREADY_EXIST_EMAIL("이미 존재하는 이메일입니다." , 400),
     TOKEN_NOT_VALID("토큰이 유효 하지 않습니다.", 401),
     TOKEN_EXPIRATION("토큰이 만료 되었습니다.", 401),
-    NOTICE_NOT_FOUND("공지사항이 존재하지 않습니다.", 404),
+    APIKEY_NOT_FOUND("인증키를 찾을 수 없음", 404),
     CLUB_NOT_FOUND("존재하지 않는 전공동아리 입니다.", 404),
     REFRESH_TOKEN_NOT_FOUND("존재하지 않는 리프레시 토큰입니다.", 404),
     MISMATCH_API_KEY("인증키가 일치하지 않습니다.", 400),

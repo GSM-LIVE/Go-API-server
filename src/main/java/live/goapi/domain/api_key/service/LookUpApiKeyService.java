@@ -1,5 +1,6 @@
 package live.goapi.domain.api_key.service;
 
+import live.goapi.domain.api_key.exception.ApiKeyNotFoundException;
 import live.goapi.domain.api_key.facade.ApiKeyFacade;
 import live.goapi.domain.api_key.presentation.dto.response.ApiKeyResponse;
 import live.goapi.domain.member.entity.Member;
@@ -21,6 +22,11 @@ public class LookUpApiKeyService {
 
     public ApiKeyResponse lookUpApiKey() {
         String currentApiKey = apiKeyFacade.getCurrentApiKey();
+
+        if (currentApiKey.isEmpty()) {
+            throw new ApiKeyNotFoundException("인증키가 존재하지 않습니다.");
+        }
+
         return ApiKeyResponse
                 .builder()
                 .randomKey(currentApiKey)

@@ -1,5 +1,6 @@
 package live.goapi.global.exception.handler;
 
+import live.goapi.domain.api_key.exception.ApiKeyNotFoundException;
 import live.goapi.domain.api_key.exception.ExistsRandomKeyException;
 import live.goapi.domain.api_key.exception.MisMatchRandomKeyException;
 import live.goapi.domain.auth.exception.ExistsEmailException;
@@ -136,6 +137,13 @@ public class GlobalExceptionHandler {
 
     @ExceptionHandler(AlreadyWriteSurveyException.class)
     public ResponseEntity<ErrorResponse> handleAlreadyWriteSurveyException(HttpServletRequest request , AlreadyWriteSurveyException e) {
+        printError(request, e, e.getErrorCode().getMessage());
+        ErrorResponse errorResponse = new ErrorResponse(e.getErrorCode().getMessage(), e.getErrorCode().getStatus());
+        return new ResponseEntity<>(errorResponse, HttpStatus.valueOf(e.getErrorCode().getStatus()));
+    }
+
+    @ExceptionHandler(ApiKeyNotFoundException.class)
+    public ResponseEntity<ErrorResponse> handleApiKeyNotFoundException(HttpServletRequest request , ApiKeyNotFoundException e) {
         printError(request, e, e.getErrorCode().getMessage());
         ErrorResponse errorResponse = new ErrorResponse(e.getErrorCode().getMessage(), e.getErrorCode().getStatus());
         return new ResponseEntity<>(errorResponse, HttpStatus.valueOf(e.getErrorCode().getStatus()));
