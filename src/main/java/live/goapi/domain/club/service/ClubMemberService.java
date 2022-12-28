@@ -15,6 +15,7 @@ import org.springframework.stereotype.Service;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.stream.Collectors;
 
 
 @Service
@@ -31,16 +32,9 @@ public class ClubMemberService {
         }
 
         List<Club> clubList = clubRepository.findAll();
-        List<ResponseClub> response = new ArrayList<>();
-
-        for (Club club : clubList) {
-            List<String> clubStudentNameList = makeClubStudentNameList(club.getStudents());
-            response.add(ResponseClub
-                    .builder()
-                    .clubName(club.getClubName())
-                    .clubStudentName(clubStudentNameList)
-                    .build());
-        }
+        List<ResponseClub> response = clubList.stream().map(
+                c -> new ResponseClub(c.getClubName() , makeClubStudentNameList(c.getStudents())))
+                .collect(Collectors.toList());
 
         return response;
     }
