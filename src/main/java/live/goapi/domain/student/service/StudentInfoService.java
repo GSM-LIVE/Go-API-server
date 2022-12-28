@@ -15,6 +15,7 @@ import org.springframework.stereotype.Service;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
+import java.util.stream.Collectors;
 
 @Service
 @RequiredArgsConstructor
@@ -100,10 +101,11 @@ public class StudentInfoService {
     }
     
     private List<ResponseStudent> makeResponseStudentList(List<Student> students) {
-        List<ResponseStudent> responseList = new ArrayList<>();
-        for (Student clubStudent : students) {
-            responseList.add(makeResponseStudent(clubStudent));
-        }
+        List<ResponseStudent> responseList = students.stream()
+                .map(s -> new ResponseStudent(s.getStudentName() ,s.getStudentNumber()
+                        , s.getStudentMajor(), s.getClub().getClubName()))
+                .collect(Collectors.toList());
+
         return responseList;
     }
 }
