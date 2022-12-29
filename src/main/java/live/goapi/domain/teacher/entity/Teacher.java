@@ -21,10 +21,10 @@ public class Teacher {
     @Column(name = "teacher_id", nullable = false)
     private Integer teacherId;
 
-    @Column(name = "teacher_name" , nullable = false , unique = true)
+    @Column(name = "teacher_name" , nullable = false)
     private String teacherName;
 
-    @Column(name = "teacher_major" , nullable = false, unique = true)
+    @Column(name = "teacher_major" , nullable = false)
     private String teacherMajor;
 
 }
