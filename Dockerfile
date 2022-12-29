@@ -1,6 +1,6 @@
 FROM openjdk:11-jdk
 
-ARG JAR_FILE=./build/libs/DevopsTestKotlin-0.0.1-SNAPSHOT.jar
+ARG JAR_FILE=build/libs/*.jar
 
 COPY ${JAR_FILE} app.jar
 

@@ -58,11 +58,8 @@ public class ClubMemberService {
     }
 
     private List<String> makeClubStudentNameList(List<Student> students) {
-        List<String> clubStudentName = new ArrayList<>();
-        for (Student student : students) {
-            clubStudentName.add(student.getStudentName());
-        }
-
+        List<String> clubStudentName = students.stream()
+                .map(s -> s.getStudentName()).collect(Collectors.toList());
         return clubStudentName;
     }
 }
