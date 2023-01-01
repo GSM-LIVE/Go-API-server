@@ -1,11 +1,14 @@
 package live.goapi.domain.club.presentation.dto.request;
 
+import lombok.AllArgsConstructor;
 import lombok.Getter;
+import lombok.NoArgsConstructor;
 import lombok.RequiredArgsConstructor;
 
 @Getter
-@RequiredArgsConstructor
+@AllArgsConstructor
+@NoArgsConstructor
 public class RequestClubName {
-    private final String clubName;
-    private final String apiKey;
+    private String clubName;
+    private String apiKey;
 }

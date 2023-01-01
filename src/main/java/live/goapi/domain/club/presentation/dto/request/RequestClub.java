@@ -4,9 +4,13 @@ import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 
+import javax.validation.constraints.NotEmpty;
+
 @Getter
 @AllArgsConstructor
+@NoArgsConstructor
 public class RequestClub {
 
-    private final String apiKey;
+    @NotEmpty
+    private String apiKey;
 }

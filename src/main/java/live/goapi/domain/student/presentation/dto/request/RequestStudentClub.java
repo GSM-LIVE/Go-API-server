@@ -8,9 +8,10 @@ import javax.validation.constraints.NotBlank;
 
 @Getter
 @AllArgsConstructor
+@NoArgsConstructor
 public class RequestStudentClub {
     @NotBlank
-    private final String clubName;
+    private String clubName;
     @NotBlank
-    private final String randomKey;
+    private String randomKey;
 }
