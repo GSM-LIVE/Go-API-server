@@ -12,5 +12,5 @@ import javax.validation.constraints.NotEmpty;
 public class RequestClub {
 
     @NotEmpty
-    private String apiKey;
+    private String randomKey;
 }

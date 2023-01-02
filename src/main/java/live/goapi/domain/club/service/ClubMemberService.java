@@ -27,7 +27,7 @@ public class ClubMemberService {
 
     public List<ResponseClub> getClubs(RequestClub request) {
 
-        if(!request.getApiKey().equals(apiKeyFacade.getCurrentApiKey())) {
+        if(!request.getRandomKey().equals(apiKeyFacade.getCurrentApiKey())) {
             throw new MisMatchRandomKeyException("인증키가 일치하지 않습니다.");
         }
 
@@ -40,7 +40,7 @@ public class ClubMemberService {
     }
 
     public ResponseClub getClubByClubName(RequestClubName request) {
-        if(!request.getApiKey().equals(apiKeyFacade.getCurrentApiKey())) {
+        if(!request.getRandomKey().equals(apiKeyFacade.getCurrentApiKey())) {
             throw new MisMatchRandomKeyException("인증키가 일치하지 않습니다.");
         }
 
